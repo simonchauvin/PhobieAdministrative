@@ -32,6 +32,11 @@ public class NavigationState : MonoBehaviour
     public DelayedAudio[] audioClips;
 
     /// <summary>
+    /// 
+    /// </summary>
+    public float delayToReplayState = 0f;
+
+    /// <summary>
     /// The navigation behaviours.
     /// </summary>
     private NavigationBehaviour[] navigationBehaviours;
@@ -115,6 +120,14 @@ public class NavigationState : MonoBehaviour
 
             clipId++;
         }
+        //Last Delay before reset state
+        yield return new WaitForSeconds(delayToReplayState);
+
+        //Stop current Audio
+        NavigationManager.instance.audioBgSrc.Stop();
+        NavigationManager.instance.audioClipsSrc.Stop();
+        //Launch audio again
+        activate();
     }
 
 }
