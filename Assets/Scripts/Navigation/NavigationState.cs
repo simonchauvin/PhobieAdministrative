@@ -56,12 +56,16 @@ public class NavigationState : MonoBehaviour
     }
 
 
-
     /// <summary>
     /// Activate this instance.
     /// </summary>
     public void activate()
     {
+        foreach (NavigationBehaviour navigationBehaviour in navigationBehaviours)
+        {
+            navigationBehaviour.activate();
+        }
+
         //Play Audio
         NavigationManager.instance.audioBgSrc.clip = audioBg;
         NavigationManager.instance.audioBgSrc.loop = loopBg;
@@ -76,6 +80,11 @@ public class NavigationState : MonoBehaviour
     /// </summary>
     public void deactivate()
     {
+        foreach (NavigationBehaviour navigationBehaviour in navigationBehaviours)
+        {
+            navigationBehaviour.deactivate();
+        }
+
         //Stop Audio
         NavigationManager.instance.audioBgSrc.Stop();
         NavigationManager.instance.audioClipsSrc.Stop();
