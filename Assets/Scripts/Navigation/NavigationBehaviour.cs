@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
 [ExecuteInEditMode]
 public class NavigationBehaviour : MonoBehaviour {
 
@@ -47,11 +52,42 @@ public class NavigationBehaviour : MonoBehaviour {
     }
 
 
-	public virtual void Update()
-	{
-		updateLineRenderer();
-	}
-	
+    public virtual void Update()
+    {
+        //ARROW AND LINE
+        Vector3 targetPos = targetNavigationState.transform.position;
+        Vector3 dir = targetPos - transform.position;
+        Vector3 halfPosition = transform.position + dir * 0.5f;
+
+        //Check
+        if (arrow == null)
+            arrow = Instantiate(arrowPrefab, halfPosition, transform.rotation) as GameObject;
+
+        float size = NavigationManager.instance.arrowSize;
+        arrow.transform.localScale = new Vector3(size, size, size);
+        arrow.transform.position = halfPosition;
+        arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
+        arrow.GetComponent<SpriteRenderer>().color = lineColor;
+
+        Debug.DrawLine(transform.position, targetPos, lineColor);
+
+        //TEXTS
+        //Vector3 offsettedPosition = transform.position + dir * NavigationManager.instance.labelOffset;
+        //
+    }
+
+
+//#if UNITY_EDITOR
+//    public void OnSceneGUI()
+//	{
+//        Debug.Log("on scene gui");
+//        Vector3 targetPos = targetNavigationState.transform.position;
+//        Vector3 dir = targetPos - transform.position;
+//        Vector3 offsettedPosition = transform.position + dir * NavigationManager.instance.labelOffset;
+//        Handles.Label(offsettedPosition, "NAME : " + name);
+//    }
+//#endif
+
     public virtual void activate ()
     {
         isActive = true;
@@ -62,36 +98,11 @@ public class NavigationBehaviour : MonoBehaviour {
         isActive = false;
     }
 
-	/// <summary>
-	/// Updates the line renderer.
-	/// </summary>
-	public void updateLineRenderer()
-	{
-        
-        Vector3 targetPos = targetNavigationState.transform.position;
-        Vector3 dir = targetPos - transform.position;
-        Vector3 halfPosition = transform.position + dir * 0.5f;
 
-        //Check
-        if(arrow == null)
-            arrow = Instantiate(arrowPrefab, halfPosition, transform.rotation) as GameObject;
-
-        float size = NavigationManager.instance.arrowSize;
-        arrow.transform.localScale = new Vector3(size, size, size);
-        arrow.transform.position = halfPosition;
-        arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
-
-        //Color
-        arrow.GetComponent<SpriteRenderer>().color = lineColor;
-
-        Debug.DrawLine(transform.position, targetPos, lineColor);
-       
-	}
-
-	/// <summary>
-	/// Navigates to target.
-	/// </summary>
-	public void navigateToTarget()
+    /// <summary>
+    /// Navigates to target.
+    /// </summary>
+    public void navigateToTarget()
 	{
 		parentNavigationState.deactivate();
 		targetNavigationState.activate();

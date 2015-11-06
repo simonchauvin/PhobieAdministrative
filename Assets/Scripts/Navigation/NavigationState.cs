@@ -41,6 +41,10 @@ public class NavigationState : MonoBehaviour
     /// </summary>
     private NavigationBehaviour[] navigationBehaviours;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public Color color;
 
     /// <summary>
     /// Init.
