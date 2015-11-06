@@ -51,6 +51,10 @@ public class NavigationState : MonoBehaviour
 	/// </summary>
 	public void activate()
 	{
+        foreach(NavigationBehaviour navigationBehaviour in navigationBehaviours)
+        {
+            navigationBehaviour.activate();
+        }
 		//Play Audio
 	}
 
@@ -60,6 +64,10 @@ public class NavigationState : MonoBehaviour
 	/// </summary>
 	public void deactivate()
 	{
+        foreach (NavigationBehaviour navigationBehaviour in navigationBehaviours)
+        {
+            navigationBehaviour.deactivate();
+        }
 		//Stop Audio
 
 		//Update current state and history in navigation manager
