@@ -40,6 +40,8 @@ public class MicrophoneManager : MonoBehaviour
 
 	public void PlayMicro ()
 	{
+		StopMicro ();
+		audioSource.Stop ();
 		audioSource.PlayOneShot (audioSource.clip);
 	}
 }
