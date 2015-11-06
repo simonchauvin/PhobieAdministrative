@@ -21,6 +21,7 @@ public class NavigationManager : MonoBehaviour {
 
     //Arrows size
     public float arrowSize = 0.2f;
+    public float labelOffset = 0.1f;
 
     public static NavigationManager instance
     {

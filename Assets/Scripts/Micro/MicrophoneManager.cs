@@ -26,6 +26,25 @@ public class MicrophoneManager : MonoBehaviour
 
 		if (Microphone.devices.Length == 1)
 			microphoneText.text = "Micro " + Microphone.devices[0];
+
+		LoadAudioClip ();
+	}
+
+	public void LoadAudioClip ()
+	{
+		//ne marche pas (du coup ne sert à rien)
+		AudioClip recordedClip = Resources.Load<AudioClip>(Application.persistentDataPath + "/RecordedMessage.wav");
+		print (recordedClip);
+
+		//string path = Application.persistentDataPath;
+		//string file = "/RecordedMessage.wav";
+
+		//Resources.Load (path, file);
+	}
+
+	public void SaveAudioClip ()
+	{
+		SaveWav.Save ("RecordedMessage", audioSource.clip);
 	}
 
 	public void RecordMicro ()
@@ -36,10 +55,13 @@ public class MicrophoneManager : MonoBehaviour
 	public void StopMicro ()
 	{
 		Microphone.End ("Built-in Microphone");
+		SaveAudioClip ();
 	}
 
 	public void PlayMicro ()
 	{
+		StopMicro ();
+		audioSource.Stop ();
 		audioSource.PlayOneShot (audioSource.clip);
 	}
 }
