@@ -26,6 +26,8 @@ public class ButtonNumber : MonoBehaviour
 		textScreen.textComposedNumber = textScreen.thisText.text + currentNumber;
 		textScreen.RefreshText ();
 		PlaySFX ();
+
+        NavigationManager.instance.sendInput(currentNumber);
 	}
 
 	public void PlaySFX ()
