@@ -32,6 +32,7 @@ public class MicrophoneManager : MonoBehaviour
 
 	public void LoadAudioClip ()
 	{
+		//ne marche pas (du coup ne sert à rien)
 		AudioClip recordedClip = Resources.Load<AudioClip>(Application.persistentDataPath + "/RecordedMessage.wav");
 		print (recordedClip);
 
