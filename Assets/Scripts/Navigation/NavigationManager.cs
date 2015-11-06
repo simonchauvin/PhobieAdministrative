@@ -19,6 +19,9 @@ public class NavigationManager : MonoBehaviour {
     private NavigationState currentState;
 
 
+    //Arrows size
+    public float arrowSize = 0.2f;
+
     public static NavigationManager instance
     {
         get
