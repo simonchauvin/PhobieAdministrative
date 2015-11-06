@@ -37,16 +37,24 @@ public class ButtonCall : MonoBehaviour
 
 	private void CallNum01 ()
 	{
+		StopLastSound ();
 		audioSource.PlayOneShot (num01SFX);
 	}
 
 	private void CallNum02 ()
 	{
+		StopLastSound ();
 		audioSource.PlayOneShot (num02SFX);
 	}
 
 	private void CallNumNotAttributed ()
 	{
+		StopLastSound ();
 		audioSource.PlayOneShot (numNotAttributedSFX);
+	}
+
+	private void StopLastSound ()
+	{
+		audioSource.Stop ();
 	}
 }
