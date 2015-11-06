@@ -5,7 +5,7 @@ using System.Collections;
 public class ButtonCall : MonoBehaviour 
 {
 	public AudioSource audioSource;
-
+	public AudioClip buttonCallSFX;
 	public AudioClip num01SFX;
 	public AudioClip num02SFX;
 	public AudioClip numNotAttributedSFX;
@@ -27,6 +27,9 @@ public class ButtonCall : MonoBehaviour
 
 	public void CallNumero ()
 	{
+		StopLastSound ();
+		audioSource.PlayOneShot (buttonCallSFX);
+
 		if (textScreen.textComposedNumber == numToCall01)
 			CallNum01 ();
 		else if (textScreen.textComposedNumber == numToCall02)
@@ -37,19 +40,16 @@ public class ButtonCall : MonoBehaviour
 
 	private void CallNum01 ()
 	{
-		StopLastSound ();
 		audioSource.PlayOneShot (num01SFX);
 	}
 
 	private void CallNum02 ()
 	{
-		StopLastSound ();
 		audioSource.PlayOneShot (num02SFX);
 	}
 
 	private void CallNumNotAttributed ()
 	{
-		StopLastSound ();
 		audioSource.PlayOneShot (numNotAttributedSFX);
 	}
 

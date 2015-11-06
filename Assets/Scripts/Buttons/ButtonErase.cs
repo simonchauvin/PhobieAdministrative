@@ -3,16 +3,19 @@ using System.Collections;
 
 public class ButtonErase : MonoBehaviour 
 {
+	public AudioClip buttonEraseSFX;
+	private ButtonCall buttonCall;
 	private TextScreen textScreen;
 
 	void Start ()
 	{
 		textScreen = FindObjectOfType<TextScreen>();
+		buttonCall = FindObjectOfType<ButtonCall>();
 	}
 
 	public void Erase ()
 	{
-		print ("erase");
+		buttonCall.audioSource.PlayOneShot (buttonEraseSFX);
 		textScreen.textComposedNumber = null;
 		textScreen.RefreshText ();
 	}
