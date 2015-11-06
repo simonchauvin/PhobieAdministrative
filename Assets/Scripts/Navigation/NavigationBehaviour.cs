@@ -65,12 +65,12 @@ public class NavigationBehaviour : MonoBehaviour {
 		updateLineRenderer();
 	}
 	
-    public void activate ()
+    public virtual void activate ()
     {
         isActive = true;
     }
 
-    public void deactivate()
+    public virtual void deactivate()
     {
         isActive = false;
     }
