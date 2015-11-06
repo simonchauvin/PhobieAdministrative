@@ -14,10 +14,15 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// </summary>
 	public NavigationState targetNavigationState;
 
-	/// <summary>
-	/// The line renderer.
-	/// </summary>
-	private LineRenderer lineRenderer;
+    ///// <summary>
+    ///// The line renderer.
+    ///// </summary>
+    //private LineRenderer lineRenderer;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private GameObject arrow;
 
 	/// <summary>
 	/// The color of the line.
@@ -36,14 +41,15 @@ public class NavigationBehaviour : MonoBehaviour {
 		if(targetNavigationState == null)
 			Debug.LogError("A navigation state target must be specified.");
 
-		lineRenderer = GetComponent<LineRenderer>();
-		if(lineRenderer == null)
-			Debug.LogError("You must attach a lineRenderer to a NaviationBehaviour.");
-
-		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-		lineRenderer.SetColors(lineColor, Color.white);
-		lineRenderer.SetWidth(0.2F, 0.05F);
-		lineRenderer.SetVertexCount(2);
+		//lineRenderer = GetComponent<LineRenderer>();
+		//if(lineRenderer == null)
+		//	Debug.LogError("You must attach a lineRenderer to a NaviationBehaviour.");
+        //
+        //
+        //lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+		//lineRenderer.SetColors(lineColor, Color.white);
+		//lineRenderer.SetWidth(0.05F, 0.05F);
+		//lineRenderer.SetVertexCount(2);
 			
 	}
 
@@ -58,10 +64,15 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// </summary>
 	public void updateLineRenderer()
 	{
-		lineRenderer.SetColors(lineColor, Color.white);
-		lineRenderer.SetWidth(0.25F, 0.02F);
-		lineRenderer.SetPosition(0, transform.position);
-		lineRenderer.SetPosition(1, targetNavigationState.transform.position);
+        //lineRenderer.SetColors(lineColor, Color.white);
+        //lineRenderer.SetWidth(0.25F, 0.02F);
+        //lineRenderer.SetPosition(0, transform.position);
+        //lineRenderer.SetPosition(1, targetNavigationState.transform.position);
+        Vector3 targetPos = targetNavigationState.transform.position;
+        Vector3 halfPosition = transform.position + (targetPos - transform.position);
+
+        Debug.DrawLine(transform.position, targetPos, lineColor);
+       
 	}
 
 	/// <summary>
