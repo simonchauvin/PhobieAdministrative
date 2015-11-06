@@ -27,7 +27,7 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// <summary>
 	/// Init
 	/// </summary>
-	void Start()
+	public virtual void Start()
 	{
 		parentNavigationState = GetComponent<NavigationState>();
 		if(parentNavigationState == null)
@@ -48,7 +48,7 @@ public class NavigationBehaviour : MonoBehaviour {
 	}
 
 
-	void Update()
+	public virtual void Update()
 	{
 		updateLineRenderer();
 	}
