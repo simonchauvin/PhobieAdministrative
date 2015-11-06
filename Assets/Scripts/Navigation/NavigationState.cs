@@ -53,6 +53,9 @@ public class NavigationState : MonoBehaviour
         //Set Id
         id = navigationStatesCount;
         navigationStatesCount++;
+
+        //Color
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
     }
 
 
@@ -72,6 +75,9 @@ public class NavigationState : MonoBehaviour
         NavigationManager.instance.audioBgSrc.Play();
 
         StartCoroutine("playClips");
+
+        //Color
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.yellow);
     }
 
 
@@ -92,6 +98,9 @@ public class NavigationState : MonoBehaviour
 
         //Update current state and history in navigation manager
         NavigationManager.instance.switchState(this);
+
+        //Color
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
     }
 
     /// <summary>
