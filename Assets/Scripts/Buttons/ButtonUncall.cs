@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ButtonUncall : MonoBehaviour 
 {
+	public AudioClip buttonUncallSFX;
 	private ButtonCall buttonCall;
 
 	void Start ()
@@ -13,5 +14,6 @@ public class ButtonUncall : MonoBehaviour
 	public void Uncall ()
 	{
 		buttonCall.audioSource.Stop ();
+		buttonCall.audioSource.PlayOneShot (buttonUncallSFX);
 	}
 }

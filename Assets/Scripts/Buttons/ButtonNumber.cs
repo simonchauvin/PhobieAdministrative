@@ -79,22 +79,6 @@ public class ButtonNumber : MonoBehaviour
 			case "#" :
 				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[11]);
 				break;
-
-			case "13" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[12]);
-				break;
-
-			case "14" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[13]);
-				break;
-
-			case "15" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[14]);
-				break;
-
-			case "16" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[15]);
-				break;
 		}
 	}
 }

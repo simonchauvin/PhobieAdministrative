@@ -4,6 +4,9 @@ using System.Collections;
 
 public class ButtonSpeaker : MonoBehaviour 
 {
+	public AudioClip buttonHPOn;
+	public AudioClip buttonHPOff;
+
 	public Color colorSpeakerOn;
 	public Color colorSpeakerOff;
 
@@ -35,6 +38,7 @@ public class ButtonSpeaker : MonoBehaviour
 		buttonCall.currentVolumeSpeaker = buttonCall.volumeWithSpeaker;
 		childText.color = colorSpeakerOn;
 		RefreshVolume ();
+		buttonCall.audioSource.PlayOneShot (buttonHPOn);
 	}
 
 	private void DesactiveSpeaker ()
@@ -42,6 +46,7 @@ public class ButtonSpeaker : MonoBehaviour
 		buttonCall.currentVolumeSpeaker = buttonCall.volumeWithoutSpeaker;
 		childText.color = colorSpeakerOff;
 		RefreshVolume ();
+		buttonCall.audioSource.PlayOneShot (buttonHPOff);
 	}
 
 	private void RefreshVolume ()
