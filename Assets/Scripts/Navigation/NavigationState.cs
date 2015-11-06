@@ -4,21 +4,26 @@ using System.Collections.Generic;
 
 public class NavigationState : MonoBehaviour
 {
-	/// <summary>
-	/// The navigation states count.
-	/// </summary>
-	public static int navigationStatesCount;
+    /// <summary>
+    /// The navigation states count.
+    /// </summary>
+    public static int navigationStatesCount;
 
-	/// <summary>
-	/// Gets the identifier.
-	/// </summary>
-	/// <value>The identifier.</value>
-	public int id {get; private set;}
+    /// <summary>
+    /// Gets the identifier.
+    /// </summary>
+    /// <value>The identifier.</value>
+    public int id { get; private set; }
 
-	/// <summary>
-	/// The audio.
-	/// </summary>
-	public AudioClip audio;
+    /// <summary>
+    /// The audio.
+    /// </summary>
+    public AudioClip audioBg;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField] public DelayedAudio[] audioClips;
 
 	/// <summary>
 	/// The navigation behaviours.
