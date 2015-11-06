@@ -22,6 +22,7 @@ public class NavigationBehaviour : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
+    public GameObject arrowPrefab;
     private GameObject arrow;
 
 	/// <summary>
@@ -47,17 +48,18 @@ public class NavigationBehaviour : MonoBehaviour {
 		if(targetNavigationState == null)
 			Debug.LogError("A navigation state target must be specified.");
 
-		//lineRenderer = GetComponent<LineRenderer>();
-		//if(lineRenderer == null)
-		//	Debug.LogError("You must attach a lineRenderer to a NaviationBehaviour.");
+        //lineRenderer = GetComponent<LineRenderer>();
+        //if(lineRenderer == null)
+        //	Debug.LogError("You must attach a lineRenderer to a NaviationBehaviour.");
         //
         //
         //lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-		//lineRenderer.SetColors(lineColor, Color.white);
-		//lineRenderer.SetWidth(0.05F, 0.05F);
-		//lineRenderer.SetVertexCount(2);
-			
-	}
+        //lineRenderer.SetColors(lineColor, Color.white);
+        //lineRenderer.SetWidth(0.05F, 0.05F);
+        //lineRenderer.SetVertexCount(2);
+
+        arrow = Instantiate(arrowPrefab, transform.position, transform.rotation) as GameObject;
+    }
 
 
 	public virtual void Update()
@@ -84,8 +86,22 @@ public class NavigationBehaviour : MonoBehaviour {
         //lineRenderer.SetWidth(0.25F, 0.02F);
         //lineRenderer.SetPosition(0, transform.position);
         //lineRenderer.SetPosition(1, targetNavigationState.transform.position);
+
         Vector3 targetPos = targetNavigationState.transform.position;
-        Vector3 halfPosition = transform.position + (targetPos - transform.position);
+        Vector3 dir = targetPos - transform.position;
+        Vector3 halfPosition = transform.position + dir * 0.5f;
+
+        //Check
+        if(arrow == null)
+            arrow = Instantiate(arrowPrefab, halfPosition, transform.rotation) as GameObject;
+
+        float size = NavigationManager.instance.arrowSize;
+        arrow.transform.localScale = new Vector3(size, size, size);
+        arrow.transform.position = halfPosition;
+        arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
+
+        //Color
+        arrow.GetComponent<SpriteRenderer>().color = lineColor;
 
         Debug.DrawLine(transform.position, targetPos, lineColor);
        
@@ -98,6 +114,7 @@ public class NavigationBehaviour : MonoBehaviour {
 	{
 		parentNavigationState.deactivate();
 		targetNavigationState.activate();
+        NavigationManager.instance.switchState(targetNavigationState);
 	}
 
 	/// <summary>
