@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class NavigationBehaviour : MonoBehaviour {
 
 	/// <summary>
@@ -19,11 +20,6 @@ public class NavigationBehaviour : MonoBehaviour {
 	private LineRenderer lineRenderer;
 
 	/// <summary>
-	/// The is active.
-	/// </summary>
-	public bool isActive {get; private set;}
-
-	/// <summary>
 	/// The color of the line.
 	/// </summary>
 	public Color lineColor;
@@ -40,21 +36,21 @@ public class NavigationBehaviour : MonoBehaviour {
 		if(targetNavigationState == null)
 			Debug.LogError("A navigation state target must be specified.");
 
-
 		lineRenderer = GetComponent<LineRenderer>();
 		if(lineRenderer == null)
 			Debug.LogError("You must attach a lineRenderer to a NaviationBehaviour.");
 
 		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-		lineRenderer.SetColors(lineColor, lineColor);
-		lineRenderer.SetWidth(0.2F, 0.2F);
+		lineRenderer.SetColors(lineColor, Color.white);
+		lineRenderer.SetWidth(0.2F, 0.05F);
 		lineRenderer.SetVertexCount(2);
 			
 	}
 
+
 	void Update()
 	{
-		//updateLineRenderer();
+		updateLineRenderer();
 	}
 	
 	/// <summary>
@@ -62,6 +58,8 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// </summary>
 	public void updateLineRenderer()
 	{
+		lineRenderer.SetColors(lineColor, Color.white);
+		lineRenderer.SetWidth(0.25F, 0.02F);
 		lineRenderer.SetPosition(0, transform.position);
 		lineRenderer.SetPosition(1, targetNavigationState.transform.position);
 	}
@@ -76,19 +74,13 @@ public class NavigationBehaviour : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Activate this instance.
+	/// Receives the input.
 	/// </summary>
-	public void activate()
+	/// <param name="input">Input.</param>
+	public virtual void receiveInput(string input)
 	{
-		isActive = true;
+
 	}
 
-	/// <summary>
-	/// Deactivate this instance.
-	/// </summary>
-	public void deactivate()
-	{
-		isActive = false;
-	}
 
 }

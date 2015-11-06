@@ -25,10 +25,6 @@ public class NavigationState : MonoBehaviour
 	/// </summary>
 	private NavigationBehaviour[] navigationBehaviours;
 
-	/// <summary>
-	/// The is active.
-	/// </summary>
-	public bool isActive {get; private set;}
 
 	/// <summary>
 	/// Init.
@@ -50,13 +46,6 @@ public class NavigationState : MonoBehaviour
 	/// </summary>
 	public void activate()
 	{
-		isActive = true;
-		//Activate every attached NavigationBehaviour
-		foreach(NavigationBehaviour navigationBehaviour in navigationBehaviours)
-		{
-			navigationBehaviour.activate();
-		}
-
 		//Play Audio
 	}
 
@@ -66,19 +55,22 @@ public class NavigationState : MonoBehaviour
 	/// </summary>
 	public void deactivate()
 	{
-		isActive = false;
-		//Deactivate every attached NavigationBehaviour
-		foreach(NavigationBehaviour navigationBehaviour in navigationBehaviours)
-		{
-			navigationBehaviour.deactivate();
-		}
-
 		//Stop Audio
 
-		//
+		//Update current state and history in navigation manager
 		NavigationManager.instance.switchState(this);
 	}
 
-
+	/// <summary>
+	/// Receives the input.
+	/// </summary>
+	/// <param name="input">Input.</param>
+	public void receiveInput(string input)
+	{
+		foreach(NavigationBehaviour navigationBehaviour in navigationBehaviours)
+		{
+			navigationBehaviour.receiveInput(input);
+		}
+	}
 
 }
