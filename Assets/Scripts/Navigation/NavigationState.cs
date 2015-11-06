@@ -89,9 +89,6 @@ public class NavigationState : MonoBehaviour
         NavigationManager.instance.audioBgSrc.Stop();
         NavigationManager.instance.audioClipsSrc.Stop();
         StopCoroutine("playClips");
-
-        //Update current state and history in navigation manager
-        NavigationManager.instance.switchState(this);
     }
 
     /// <summary>
@@ -135,8 +132,12 @@ public class NavigationState : MonoBehaviour
         //Stop current Audio
         NavigationManager.instance.audioBgSrc.Stop();
         NavigationManager.instance.audioClipsSrc.Stop();
-        //Launch audio again
-        activate();
+        //Play Audio again
+        NavigationManager.instance.audioBgSrc.clip = audioBg;
+        NavigationManager.instance.audioBgSrc.loop = loopBg;
+        NavigationManager.instance.audioBgSrc.Play();
+
+        StartCoroutine("playClips");
     }
 
 }
