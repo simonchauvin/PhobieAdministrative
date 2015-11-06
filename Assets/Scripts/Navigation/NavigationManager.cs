@@ -6,7 +6,15 @@ public class NavigationManager : MonoBehaviour {
 
     private static NavigationManager _instance;
 
+    // PUBLIC
+    public NavigationState startingState;
+
+    private AudioSource[] audioSources;
+    public AudioSource audioBgSrc { get { return audioSources[0];}}
+    public AudioSource audioClipsSrc { get { return audioSources[1];}}
     
+
+    // PRIVATE
     private List<NavigationState> historic;
     private NavigationState currentState;
 
@@ -25,9 +33,17 @@ public class NavigationManager : MonoBehaviour {
 
     void Start()
     {
-        historic = new List<NavigationState>();
-    }
+        // Init
+        audioSources = GetComponents<AudioSource>();
 
+        historic = new List<NavigationState>();
+        if (startingState == null)
+        {
+            Debug.LogError("You need to choose a starting state");
+        }
+        currentState = startingState;
+        currentState.activate();
+    }
 
     void Update()
     {
@@ -38,5 +54,10 @@ public class NavigationManager : MonoBehaviour {
     {
         historic.Add(currentState);
         currentState = stateToSwitchTo;
+    }
+
+    public void sendInput (string characterToSend)
+    {
+        currentState.receiveInput(characterToSend);
     }
 }
