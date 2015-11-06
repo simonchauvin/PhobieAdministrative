@@ -6,7 +6,10 @@ public class NavigationManager : MonoBehaviour {
 
     private static NavigationManager _instance;
 
-    
+    // PUBLIC
+    public NavigationState startingState;
+
+    // PRIVATE
     private List<NavigationState> historic;
     private NavigationState currentState;
 
@@ -25,9 +28,15 @@ public class NavigationManager : MonoBehaviour {
 
     void Start()
     {
+        // Init
         historic = new List<NavigationState>();
+        if (startingState == null)
+        {
+            Debug.LogError("You need to choose a starting state");
+        }
+        currentState = startingState;
+        currentState.activate();
     }
-
 
     void Update()
     {
@@ -38,5 +47,10 @@ public class NavigationManager : MonoBehaviour {
     {
         historic.Add(currentState);
         currentState = stateToSwitchTo;
+    }
+
+    public void sendInput (string characterToSend)
+    {
+        currentState.receiveInput(characterToSend);
     }
 }

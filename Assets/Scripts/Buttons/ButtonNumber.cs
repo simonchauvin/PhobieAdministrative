@@ -21,5 +21,7 @@ public class ButtonNumber : MonoBehaviour
 		//print (currentNumber);
 		textScreen.textComposedNumber = textScreen.thisText.text + currentNumber;
 		textScreen.RefreshText ();
+
+        NavigationManager.instance.sendInput(currentNumber);
 	}
 }
