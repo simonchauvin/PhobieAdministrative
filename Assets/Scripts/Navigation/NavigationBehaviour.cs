@@ -24,6 +24,12 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// </summary>
 	public Color lineColor;
 
+    /// <summary>
+    /// Whether the state is active or not.
+    /// </summary>
+    public bool isActive { get; set; }
+
+
 	/// <summary>
 	/// Init
 	/// </summary>
@@ -53,6 +59,16 @@ public class NavigationBehaviour : MonoBehaviour {
 		updateLineRenderer();
 	}
 	
+    public void activate ()
+    {
+        isActive = true;
+    }
+
+    public void deactivate()
+    {
+        isActive = false;
+    }
+
 	/// <summary>
 	/// Updates the line renderer.
 	/// </summary>
