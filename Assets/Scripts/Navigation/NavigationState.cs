@@ -23,59 +23,98 @@ public class NavigationState : MonoBehaviour
     /// <summary>
     /// 
     /// </summary>
-    [SerializeField] public DelayedAudio[] audioClips;
+    public bool loopBg = true;
 
-	/// <summary>
-	/// The navigation behaviours.
-	/// </summary>
-	private NavigationBehaviour[] navigationBehaviours;
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField]
+    public DelayedAudio[] audioClips;
 
-
-	/// <summary>
-	/// Init.
-	/// </summary>
-	void Awake()
-	{
-		//Get attached navigation behaviours
-		navigationBehaviours = GetComponents<NavigationBehaviour>();
-
-		//Set Id
-		id = navigationStatesCount;
-		navigationStatesCount ++;
-	}
+    /// <summary>
+    /// The navigation behaviours.
+    /// </summary>
+    private NavigationBehaviour[] navigationBehaviours;
 
 
+    /// <summary>
+    /// Init.
+    /// </summary>
+    void Awake()
+    {
+        //Get attached navigation behaviours
+        navigationBehaviours = GetComponents<NavigationBehaviour>();
 
-	/// <summary>
-	/// Activate this instance.
-	/// </summary>
-	public void activate()
-	{
-		//Play Audio
-	}
+        //Set Id
+        id = navigationStatesCount;
+        navigationStatesCount++;
+    }
 
 
-	/// <summary>
-	/// Deactivate this instance.
-	/// </summary>
-	public void deactivate()
-	{
-		//Stop Audio
 
-		//Update current state and history in navigation manager
-		NavigationManager.instance.switchState(this);
-	}
+    /// <summary>
+    /// Activate this instance.
+    /// </summary>
+    public void activate()
+    {
+        //Play Audio
+        NavigationManager.instance.audioBgSrc.clip = audioBg;
+        NavigationManager.instance.audioBgSrc.loop = loopBg;
+        NavigationManager.instance.audioBgSrc.Play();
 
-	/// <summary>
-	/// Receives the input.
-	/// </summary>
-	/// <param name="input">Input.</param>
-	public void receiveInput(string input)
-	{
-		foreach(NavigationBehaviour navigationBehaviour in navigationBehaviours)
-		{
-			navigationBehaviour.receiveInput(input);
-		}
-	}
+        StartCoroutine("playClips");
+    }
+
+
+    /// <summary>
+    /// Deactivate this instance.
+    /// </summary>
+    public void deactivate()
+    {
+        //Stop Audio
+        NavigationManager.instance.audioBgSrc.Stop();
+        NavigationManager.instance.audioClipsSrc.Stop();
+        StopCoroutine("playClips");
+
+        //Update current state and history in navigation manager
+        NavigationManager.instance.switchState(this);
+    }
+
+    /// <summary>
+    /// Receives the input.
+    /// </summary>
+    /// <param name="input">Input.</param>
+    public void receiveInput(string input)
+    {
+        foreach (NavigationBehaviour navigationBehaviour in navigationBehaviours)
+        {
+            navigationBehaviour.receiveInput(input);
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator playClips()
+    {
+        int clipId = 0;
+        while(clipId < audioClips.Length)
+        {
+            //PlayBack delay
+            float delay = audioClips[clipId].delay;
+            yield return new WaitForSeconds(delay);
+
+            //Play
+            NavigationManager.instance.audioClipsSrc.clip = audioClips[clipId].audioClip;
+            NavigationManager.instance.audioClipsSrc.Play();
+
+            //Wait for length of clip
+            float clipLength = audioClips[clipId].audioClip.length;
+            yield return new WaitForSeconds(clipLength);
+
+            clipId++;
+        }
+    }
 
 }

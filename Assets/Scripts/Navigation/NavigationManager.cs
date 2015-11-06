@@ -9,6 +9,11 @@ public class NavigationManager : MonoBehaviour {
     // PUBLIC
     public NavigationState startingState;
 
+    private AudioSource[] audioSources;
+    public AudioSource audioBgSrc { get { return audioSources[0];}}
+    public AudioSource audioClipsSrc { get { return audioSources[1];}}
+    
+
     // PRIVATE
     private List<NavigationState> historic;
     private NavigationState currentState;
@@ -29,6 +34,8 @@ public class NavigationManager : MonoBehaviour {
     void Start()
     {
         // Init
+        audioSources = GetComponents<AudioSource>();
+
         historic = new List<NavigationState>();
         if (startingState == null)
         {
