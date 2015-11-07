@@ -27,9 +27,10 @@ public class PlayerProfile : MonoBehaviour
     public int single { get; set; }
     public int married { get; set; }
     public int dept { get; set; }
-    public int age { get; set; }
+    public int ageSet { get; set; }
     public int height { get; set; }
     public int weight { get; set; }
+   public int profileSet { get; set; }
 	
     public enum playerInfoType
     {
@@ -57,7 +58,7 @@ public class PlayerProfile : MonoBehaviour
 	
 	void Update ()
     {
-	    
+	    //if()
 	}
 
     public bool checkProfileValue(playerInfoType typeToCheck, int resultToMatch)
