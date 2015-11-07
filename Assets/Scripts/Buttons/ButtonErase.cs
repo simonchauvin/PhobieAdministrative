@@ -4,18 +4,18 @@ using System.Collections;
 public class ButtonErase : MonoBehaviour 
 {
 	public AudioClip buttonEraseSFX;
-	private ButtonCall buttonCall;
+	private KeyAudioManager keyAudioManager;
 	private TextScreen textScreen;
 
 	void Start ()
 	{
 		textScreen = FindObjectOfType<TextScreen>();
-		buttonCall = FindObjectOfType<ButtonCall>();
+		keyAudioManager = FindObjectOfType<KeyAudioManager>();
 	}
 
 	public void Erase ()
 	{
-		buttonCall.audioSource.PlayOneShot (buttonEraseSFX);
+		keyAudioManager.audioSource.PlayOneShot (buttonEraseSFX);
 		textScreen.textComposedNumber = null;
 		textScreen.RefreshText ();
 	}
