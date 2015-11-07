@@ -6,9 +6,9 @@ using System.Collections;
 /// </summary>
 public class NavigationGate : NavigationBehaviour {
 
-    public PlayerProfile.playerInfoType conditionToMatch;
+    public PlayerProfile.playerInfoType conditionToCheck;
 
-    public bool matchCondition = false;
+    public int resultToMatch = 0;
 
     public override void Start()
     {
@@ -22,7 +22,7 @@ public class NavigationGate : NavigationBehaviour {
         if (!isActive)
             return;
 
-        if(PlayerProfile.instance.checkMatch(conditionToMatch) == matchCondition)
+        if(PlayerProfile.instance.checkProfileValue(conditionToCheck, resultToMatch))
         {
             navigateToTarget();
         }

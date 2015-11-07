@@ -19,10 +19,10 @@ public class PlayerProfile : MonoBehaviour
 
 
     public int id { get; set; }
-    public bool male { get; set; }
-    public bool female { get; set; }
-    public bool single { get; set; }
-    public bool married { get; set; }
+    public int male { get; set; }
+    public int female { get; set; }
+    public int single { get; set; }
+    public int married { get; set; }
     public int dept { get; set; }
     public int age { get; set; }
     public int height { get; set; }
@@ -53,26 +53,25 @@ public class PlayerProfile : MonoBehaviour
 	    
 	}
 
-    public bool checkMatch(playerInfoType typeToMatch)
+    public bool checkProfileValue(playerInfoType typeToCheck, int resultToMatch)
     {
-        switch(typeToMatch)
+        switch(typeToCheck)
         {
             case playerInfoType.male:
-                return male;
-                break;
+                return (male == resultToMatch);
             case playerInfoType.female:
-                return female;
-                break;
+                return (female == resultToMatch);
             case playerInfoType.single:
-                return single;
-                break;
+                return (single == resultToMatch);
             case playerInfoType.married:
-                return married;
-                break;
+                return (married == resultToMatch);
             default:
                 return false;
-                break;
-
         }
+    }
+
+    public void setProfileValue(playerInfoType typeToSet, int value)
+    {
+
     }
 }
