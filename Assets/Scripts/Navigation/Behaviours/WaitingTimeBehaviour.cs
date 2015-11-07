@@ -22,8 +22,6 @@ public class WaitingTimeBehaviour : NavigationBehaviour
         //Set duration to en end of state
         if (waitToEndOfStateClips)
             timeToWait = GetComponent<NavigationState>().duration;
-
-        Debug.Log(".." + name + " : " + timeToWait);
 	}
 
 
@@ -56,6 +54,11 @@ public class WaitingTimeBehaviour : NavigationBehaviour
         base.activate();
 
         timer = 0f;
+    }
+
+    public override void deactivate()
+    {
+        base.deactivate();
     }
 
     public override void receiveInput(string input)
