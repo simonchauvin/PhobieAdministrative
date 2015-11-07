@@ -18,11 +18,19 @@ public class ButtonCall : MonoBehaviour
 	public float volumeWithoutSpeaker;
 
 	private TextScreen textScreen;
+	private ButtonCallManager buttonCallManager;
 
 	void Start ()
 	{
 		textScreen = FindObjectOfType<TextScreen>();
+		buttonCallManager = FindObjectOfType<ButtonCallManager>();
 		audioSource = GetComponent<AudioSource>();
+	}
+
+	void Update ()
+	{
+		if (Input.GetKeyDown (KeyCode.A))
+			ReceiveCall ();
 	}
 
 	public void CallNumero ()
@@ -30,12 +38,23 @@ public class ButtonCall : MonoBehaviour
 		StopLastSound ();
 		audioSource.PlayOneShot (buttonCallSFX);
 
+		buttonCallManager.isPlayerInACall = true;
+		buttonCallManager.isPlayerGiveTheCall = true;
+		buttonCallManager.SetCallButtons ();
+
 		if (textScreen.textComposedNumber == numToCall01)
 			CallNum01 ();
 		else if (textScreen.textComposedNumber == numToCall02)
 			CallNum02 ();
 		else
 			CallNumNotAttributed ();
+	}
+
+	public void ReceiveCall ()
+	{
+		buttonCallManager.isPlayerInACall = true;
+		buttonCallManager.isPlayerGiveTheCall = false;
+		buttonCallManager.SetCallButtons ();
 	}
 
 	private void CallNum01 ()

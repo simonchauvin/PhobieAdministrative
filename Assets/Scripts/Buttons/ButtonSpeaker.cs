@@ -10,16 +10,21 @@ public class ButtonSpeaker : MonoBehaviour
 	public Color colorSpeakerOn;
 	public Color colorSpeakerOff;
 
+	public Sprite spriteSpeakerOn;
+	public Sprite spriteSpeakerOff;
+
 	private GameObject buttonChild;
 	private ButtonCall buttonCall;
 	private Text childText;
+	private Image thisImage;
 	private bool isOnSpeaker;
 
 	void Start () 
 	{
-		buttonChild = transform.GetChild (0).gameObject;
-		childText = buttonChild.GetComponent<Text>();
+		//buttonChild = transform.GetChild (0).gameObject;
+		//childText = buttonChild.GetComponent<Text>();
 		buttonCall = FindObjectOfType<ButtonCall>();
+		thisImage = GetComponent<Image>();
 		DesactiveSpeaker ();
 	}
 
@@ -36,17 +41,20 @@ public class ButtonSpeaker : MonoBehaviour
 	private void ActiveSpeaker ()
 	{
 		buttonCall.currentVolumeSpeaker = buttonCall.volumeWithSpeaker;
-		childText.color = colorSpeakerOn;
+		//childText.color = colorSpeakerOn;
 		RefreshVolume ();
 		buttonCall.audioSource.PlayOneShot (buttonHPOn);
+		thisImage.sprite = spriteSpeakerOn;
+
 	}
 
 	private void DesactiveSpeaker ()
 	{
 		buttonCall.currentVolumeSpeaker = buttonCall.volumeWithoutSpeaker;
-		childText.color = colorSpeakerOff;
+		//childText.color = colorSpeakerOff;
 		RefreshVolume ();
 		buttonCall.audioSource.PlayOneShot (buttonHPOff);
+		thisImage.sprite = spriteSpeakerOff;
 	}
 
 	private void RefreshVolume ()
