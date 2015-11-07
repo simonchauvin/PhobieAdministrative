@@ -18,7 +18,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
     private bool recordingEnded;
 
 
-    public virtual void Start()
+    public override void Start()
     {
         base.Start();
 
@@ -28,7 +28,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
         recordingEnded = false;
     }
 
-    public virtual void Update()
+    public override void Update()
     {
         base.Update();
 
@@ -58,8 +58,8 @@ public class RecordMessageBehaviour : NavigationBehaviour
     {
         if (!recordingEnded && input.Equals(characterToEnter.ToString()))
         {
-            stopRecording();
-            StartCoroutine("recordCacheHackNumber");
+            //stopRecording();
+            //StartCoroutine("recordCacheHackNumber");
         }
     }
 
@@ -100,6 +100,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
         else
         {
             print("Finished Uploading message");
+
             navigateToTarget();
         }
     }

@@ -76,6 +76,7 @@ public class InterfaceManager : MonoBehaviour
 	{
 		possibeInterfaces = AvailableInterfacesEnum.ReceiveCall;
 		SetCallInterface ();
+        NavigationManager.instance.init();
 	}
 
 	private void SetCallInterface ()

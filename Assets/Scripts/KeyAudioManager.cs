@@ -16,7 +16,7 @@ public class KeyAudioManager : MonoBehaviour
 
 	private InterfaceManager interfaceManager;
 	private float currentVolumeSpeaker;
-
+    
 	void Start ()
 	{
 		interfaceManager = FindObjectOfType<InterfaceManager>();

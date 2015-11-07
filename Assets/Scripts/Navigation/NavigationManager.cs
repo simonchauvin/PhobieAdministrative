@@ -45,6 +45,10 @@ public class NavigationManager : MonoBehaviour {
         {
             Debug.LogError("You need to choose a starting state");
         }
+    }
+
+    public void init ()
+    {
         currentState = startingState;
         currentState.activate();
     }
