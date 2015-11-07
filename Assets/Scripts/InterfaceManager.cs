@@ -15,6 +15,8 @@ public class InterfaceManager : MonoBehaviour
 	public GameObject buttonCall;
 	public GameObject buttonUncall;
 
+	public GameObject buttonBack;
+
 	public AudioClip buttonAcceptSFX;
 	public AudioClip buttonDeclineSFX;
 

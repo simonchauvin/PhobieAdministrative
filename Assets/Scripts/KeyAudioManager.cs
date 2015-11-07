@@ -47,16 +47,14 @@ public class KeyAudioManager : MonoBehaviour
 
 	public void SetDring ()
 	{
-#if UNITY_ANDROID
-		Handheld.Vibrate ();
-#endif
-		audioSource.clip = ringSFX;
-		audioSource.Play ();
-		print ("ring");
-
 		if (numberOfWaitingRings > 0)
 		{
-			print ("ring again");
+#if UNITY_ANDROID
+			Handheld.Vibrate ();
+#endif
+			audioSource.clip = ringSFX;
+			audioSource.Play ();
+			print ("ring");
 			numberOfWaitingRings --;
 			Invoke ("SetDring", timeBeforeAnotherRing);
 		}
