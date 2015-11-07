@@ -19,6 +19,8 @@ public class PlayerProfile : MonoBehaviour
 
 
     public int id { get; set; }
+    public int premiumId { get; set; }
+    public int procedureId { get; set; }
     public int male { get; set; }
     public int female { get; set; }
     public int single { get; set; }
@@ -45,6 +47,8 @@ public class PlayerProfile : MonoBehaviour
 	void Start ()
     {
         id = Random.Range(100000000, 999999999);
+        premiumId = Random.Range(00000000, 99999999);
+        procedureId = Random.Range(100000000, 999999999);
 	}
 	
 	
