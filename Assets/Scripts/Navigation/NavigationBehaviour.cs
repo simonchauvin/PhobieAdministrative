@@ -28,7 +28,7 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// <summary>
 	/// The color of the line.
 	/// </summary>
-	public Color lineColor;
+	public Color lineColor = Color.cyan;
 
     /// <summary>
     /// Whether the state is active or not.
