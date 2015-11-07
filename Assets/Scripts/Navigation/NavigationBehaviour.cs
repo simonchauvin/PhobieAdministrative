@@ -49,6 +49,8 @@ public class NavigationBehaviour : MonoBehaviour {
 			Debug.LogError("A navigation state target must be specified.");
 
         arrow = Instantiate(arrowPrefab, transform.position, transform.rotation) as GameObject;
+        arrow.name = "arrow_" + name;
+        arrow.transform.parent = GameObject.Find("GUIArrows").transform;
     }
 
 
@@ -61,7 +63,11 @@ public class NavigationBehaviour : MonoBehaviour {
 
         //Check
         if (arrow == null)
+        {
             arrow = Instantiate(arrowPrefab, halfPosition, transform.rotation) as GameObject;
+            arrow.name = "arrow_" + name;
+            arrow.transform.parent = GameObject.Find("GUIArrows").transform;
+        }
 
         float size = NavigationManager.instance.arrowSize;
         arrow.transform.localScale = new Vector3(size, size, size);
