@@ -22,31 +22,24 @@ public class PlayerProfile : MonoBehaviour
     public int premiumId = 0;
     public int procedureId = 0;
     public int isPremium { get; set; }
-    public int male { get; set; }
-    public int female { get; set; }
-    public int single { get; set; }
-    public int married { get; set; }
-    public int dept { get; set; }
+    public int marriedSet { get; set; }
+    public int deptSet { get; set; }
     public int ageSet { get; set; }
-    public int height { get; set; }
-    public int weight { get; set; }
-   public int profileSet { get; set; }
-	
+    public int profileSet { get; set; }
+    public int cbSet { get; set; }
+
     public enum playerInfoType
     {
         none,
         id, 
         premiumId,
-        isPremium,
         procedureId,
-        male,
-        female,
-        single,
-        married,
-        dept,
-        age,
-        height,
-        weight
+        isPremium,
+        marriedSet,
+        deptSet,
+        ageSet,
+        profileSet,
+        cbSet,
     }
 
 
@@ -67,14 +60,18 @@ public class PlayerProfile : MonoBehaviour
         {
             case playerInfoType.id:
                 return (id == resultToMatch);
-            case playerInfoType.male:
-                return (male == resultToMatch);
-            case playerInfoType.female:
-                return (female == resultToMatch);
-            case playerInfoType.single:
-                return (single == resultToMatch);
-            case playerInfoType.married:
-                return (married == resultToMatch);
+            case playerInfoType.cbSet:
+                return (cbSet == resultToMatch);
+            case playerInfoType.isPremium:
+                return (isPremium == resultToMatch);
+            case playerInfoType.marriedSet:
+                return (marriedSet == resultToMatch);
+            case playerInfoType.deptSet:
+                return (deptSet == resultToMatch);
+            case playerInfoType.ageSet:
+                return (ageSet == resultToMatch);
+            case playerInfoType.profileSet:
+                return (cbSet + isPremium + marriedSet + deptSet + ageSet) == 1;
             default:
                 return false;
         }
@@ -87,17 +84,20 @@ public class PlayerProfile : MonoBehaviour
             case playerInfoType.id:
                 id = value;
                 break;
-            case playerInfoType.male:
-                male = value;
+            case playerInfoType.cbSet:
+                cbSet = value;
                 break;
-            case playerInfoType.female:
-                female = value;
+            case playerInfoType.marriedSet:
+                marriedSet = value;
                 break;
-            case playerInfoType.single:
-                single = value;
+            case playerInfoType.deptSet:
+                deptSet = value;
                 break;
-            case playerInfoType.married:
-                married = value;
+            case playerInfoType.ageSet:
+                ageSet = value;
+                break;
+            case playerInfoType.isPremium:
+                isPremium = value;
                 break;
             default:
                 break;
