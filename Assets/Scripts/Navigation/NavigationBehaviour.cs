@@ -12,7 +12,7 @@ public class NavigationBehaviour : MonoBehaviour {
 	/// <summary>
 	/// parent navigation.
 	/// </summary>
-	private NavigationState parentNavigationState;
+	protected NavigationState parentNavigationState;
 
 	/// <summary>
 	/// target navigation.
