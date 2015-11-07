@@ -19,5 +19,8 @@ public class ButtonUncall : MonoBehaviour
 		keyAudioManager.audioSource.Stop ();
 		keyAudioManager.audioSource.PlayOneShot (buttonUncallSFX);
 		interfaceManager.GoToNormalInterface ();
+
+        NavigationManager.instance.reset();
+        PlayerProfile.instance.reset();
 	}
 }

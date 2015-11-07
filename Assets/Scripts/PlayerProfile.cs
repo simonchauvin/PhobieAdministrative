@@ -51,7 +51,7 @@ public class PlayerProfile : MonoBehaviour
         
 	}
 	
-    private void reset ()
+    public void reset ()
     {
         isPremium = 0;
         marriedSet = 0;

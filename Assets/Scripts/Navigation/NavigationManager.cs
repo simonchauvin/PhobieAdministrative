@@ -64,4 +64,11 @@ public class NavigationManager : MonoBehaviour {
     {
         currentState.receiveInput(characterToSend);
     }
+
+    public void reset ()
+    {
+        currentState.deactivate();
+        currentState = null;
+        historic = new List<NavigationState>();
+    }
 }
