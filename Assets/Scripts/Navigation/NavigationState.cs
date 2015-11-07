@@ -19,7 +19,7 @@ public class NavigationState : MonoBehaviour
     /// <summary>
     /// The audio.
     /// </summary>
-    public AudioClip audioBg;
+    public AudioBackground.Type audioBgType;
 
     /// <summary>
     /// 
@@ -87,7 +87,7 @@ public class NavigationState : MonoBehaviour
         }
 
         //Play Audio
-        NavigationManager.instance.audioBgSrc.clip = audioBg;
+        NavigationManager.instance.audioBgSrc.clip = AudioBackground.instance.retrieveAudioClip(audioBgType);
         NavigationManager.instance.audioBgSrc.loop = loopBg;
         NavigationManager.instance.audioBgSrc.Play();
 
@@ -163,7 +163,7 @@ public class NavigationState : MonoBehaviour
         NavigationManager.instance.audioClipsSrc.Stop();
         //Launch audio again
         //Play Audio
-        NavigationManager.instance.audioBgSrc.clip = audioBg;
+        NavigationManager.instance.audioBgSrc.clip = AudioBackground.instance.retrieveAudioClip(audioBgType);
         NavigationManager.instance.audioBgSrc.loop = loopBg;
         NavigationManager.instance.audioBgSrc.Play();
 
