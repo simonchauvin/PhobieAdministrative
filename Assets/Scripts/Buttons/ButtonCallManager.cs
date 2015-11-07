@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ButtonCallManager : MonoBehaviour 
 {
-	public GameObject buttonCall;
-	public GameObject buttonUncall;
+	public Image buttonCall;
+	public Image buttonUncall;
 
 	public GameObject receiveCallUI;
 	public GameObject giveCallUI;
@@ -19,8 +20,8 @@ public class ButtonCallManager : MonoBehaviour
 
 	public void SetCallButtons ()
 	{
-		buttonCall.SetActive (!isPlayerInACall);
-		buttonUncall.SetActive (isPlayerInACall);
+		buttonCall.enabled = !isPlayerInACall;
+		buttonUncall.enabled = isPlayerInACall;
 
 		if (isPlayerInACall)
 		{
