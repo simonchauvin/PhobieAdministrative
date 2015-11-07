@@ -78,6 +78,7 @@ public class NavigationState : MonoBehaviour
         {
             duration += delayedAudio.delay + delayedAudio.audioClip.length;
         }
+        duration += delayToReplayState;
     }
 
 
