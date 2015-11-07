@@ -28,5 +28,8 @@ public class ButtonCall : MonoBehaviour
 		keyAudioManager.audioSource.PlayOneShot (noCreditSFX);
 	}
 
-
+	public void CancelCall ()
+	{
+		CancelInvoke ("NoCredit");
+	}
 }

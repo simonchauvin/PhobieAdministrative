@@ -11,7 +11,8 @@ public class KeyAudioManager : MonoBehaviour
 	public float volumeWithoutSpeaker;
 
 	public float timeBeforeAnotherRing;
-	public int numberOfWaitingRings;
+	public int numberOfWaitingRingsMax;
+	private int numberOfWaitingRings;
 
 	private InterfaceManager interfaceManager;
 	private float currentVolumeSpeaker;
@@ -20,6 +21,7 @@ public class KeyAudioManager : MonoBehaviour
 	{
 		interfaceManager = FindObjectOfType<InterfaceManager>();
 		audioSource = GetComponent<AudioSource>();
+		SetNextNumberOfRings ();
 	}
 
 	void Update ()
@@ -61,8 +63,14 @@ public class KeyAudioManager : MonoBehaviour
 		else
 		{
 			print ("raccroche");
+			SetNextNumberOfRings ();
 			interfaceManager.GoToNormalInterface ();
 		}
+	}
+
+	public void SetNextNumberOfRings ()
+	{
+		numberOfWaitingRings = numberOfWaitingRingsMax;
 	}
 
 	public void CancelDring ()

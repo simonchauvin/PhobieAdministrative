@@ -26,7 +26,7 @@ public class ReceiveCallManager : MonoBehaviour
 
 	public void CallPlayer ()
 	{
-		keyAudioManager.numberOfWaitingRings += incrementationRingsNumber;
+		keyAudioManager.numberOfWaitingRingsMax += incrementationRingsNumber;
 		interfaceManager.GoToDringInterface ();
 	}
 }
