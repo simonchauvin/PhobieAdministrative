@@ -31,6 +31,8 @@ public class InterfaceManager : MonoBehaviour
 
 		buttonCall = FindObjectOfType<ButtonCall>();
 
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
 		buttonCallObj = buttonCall.gameObject;
 		buttonBackObj = FindObjectOfType<ButtonErase>().gameObject;
 		buttonUncallObj = FindObjectOfType<ButtonUncall>().gameObject;
