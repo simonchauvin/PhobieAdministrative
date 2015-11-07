@@ -122,6 +122,9 @@ public class NavigationState : MonoBehaviour
     /// <returns></returns>
     IEnumerator playClips()
     {
+        if (audioClips.Length == 0)
+            yield break;
+
         int clipId = 0;
         while(clipId < audioClips.Length)
         {
