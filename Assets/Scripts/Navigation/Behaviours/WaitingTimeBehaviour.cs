@@ -28,25 +28,24 @@ public class WaitingTimeBehaviour : NavigationBehaviour
     public override void Update()
     {
         base.Update();
-#if UNITY_EDITOR
-        //Set duration to en end of state
-        if (waitToEndOfStateClips)
-            timeToWait = GetComponent<NavigationState>().duration;
-#else
-
-       
-
-        
-        if (isActive)
+        if(!Application.isPlaying)
         {
-            timer += Time.deltaTime;
-            if (timer >= timeToWait)
+            //Set duration to en end of state
+            if (waitToEndOfStateClips)
+                timeToWait = GetComponent<NavigationState>().duration;
+        }
+        else
+        {
+            if (isActive)
             {
-                navigateToTarget();
+                timer += Time.deltaTime;
+                if (timer >= timeToWait)
+                {
+                    navigateToTarget();
+                }
             }
         }
-
-#endif
+        
     }
 
     public override void activate ()
