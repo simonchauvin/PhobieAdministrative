@@ -52,7 +52,8 @@ public class KeyAudioManager : MonoBehaviour
 		if (numberOfWaitingRings > 0)
 		{
 #if UNITY_ANDROID
-			Handheld.Vibrate ();
+
+			//Handheld.Vibrate ();
 #endif
 			audioSource.clip = ringSFX;
 			audioSource.Play ();
