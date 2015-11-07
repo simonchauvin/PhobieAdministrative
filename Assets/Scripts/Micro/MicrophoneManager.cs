@@ -27,19 +27,18 @@ public class MicrophoneManager : MonoBehaviour
 		if (Microphone.devices.Length == 1)
 			microphoneText.text = "Micro " + Microphone.devices[0];
 
-		LoadAudioClip ();
+		StartCoroutine ("LoadAudioClip");
 	}
 
-	public void LoadAudioClip ()
+	IEnumerator LoadAudioClip ()
 	{
-		//ne marche pas (du coup ne sert à rien)
-		AudioClip recordedClip = Resources.Load<AudioClip>(Application.persistentDataPath + "/RecordedMessage.wav");
-		print (recordedClip);
-
-		//string path = Application.persistentDataPath;
-		//string file = "/RecordedMessage.wav";
-
-		//Resources.Load (path, file);
+#if UNITY_ANDROID
+		string path = "file:///"+ Application.persistentDataPath + "/RecordedMessage.wav";
+		WWW www = new WWW (path);
+		yield return www;
+		AudioClip audioClipLoaded = www.GetAudioClip (false, false, AudioType.WAV);
+		audioSource.clip = audioClipLoaded;
+#endif
 	}
 
 	public void SaveAudioClip ()
@@ -49,6 +48,7 @@ public class MicrophoneManager : MonoBehaviour
 
 	public void RecordMicro ()
 	{
+		audioSource.clip = null;
 		audioSource.clip = Microphone.Start ("Built-in Microphone", loop, duration, frequency);
 	}
 
