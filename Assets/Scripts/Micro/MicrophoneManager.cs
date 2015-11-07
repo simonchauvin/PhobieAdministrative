@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneManager : MonoBehaviour
 {
-    public Text microphoneText;
+    //public Text microphoneText;
     public int duration;
     public int frequency;
 
@@ -19,13 +19,13 @@ public class MicrophoneManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        microphoneText.text = null;
+        //microphoneText.text = null;
         //Debug.Log("Name: " + device);
-        foreach (string device in Microphone.devices)
-            microphoneText.text = microphoneText.text + "Name: " + device;
+        /*foreach (string device in Microphone.devices)
+            microphoneText.text = microphoneText.text + "Name: " + device;*/
 
-        if (Microphone.devices.Length == 1)
-            microphoneText.text = "Micro " + Microphone.devices[0];
+        /*if (Microphone.devices.Length == 1)
+            microphoneText.text = "Micro " + Microphone.devices[0];*/
 #if UNITY_ANDROID
         StartCoroutine("LoadAudioClip");
 #endif
