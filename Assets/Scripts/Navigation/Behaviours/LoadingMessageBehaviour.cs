@@ -22,7 +22,7 @@ public class LoadingMessageBehaviour : NavigationBehaviour
     public override void activate()
     {
         base.activate();
-
+        
         StartCoroutine("retrieveCacheHackNumber");
     }
 
