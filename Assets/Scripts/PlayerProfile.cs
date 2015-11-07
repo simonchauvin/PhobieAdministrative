@@ -17,6 +17,8 @@ public class PlayerProfile : MonoBehaviour
         }
     }
 
+    public bool debugCompleteProfile = false;
+
 
     public int id = 0;
     public int premiumId = 0;
@@ -62,6 +64,8 @@ public class PlayerProfile : MonoBehaviour
         resetProfile = 0;
     }
 	
+
+
 	void Update ()
     {
 	    //if()
@@ -84,7 +88,10 @@ public class PlayerProfile : MonoBehaviour
             case playerInfoType.ageSet:
                 return (ageSet == resultToMatch);
             case playerInfoType.profileSet:
-                return (cbSet + isPremium + marriedSet + deptSet + ageSet) == 1;
+                int trueFalse = (cbSet + isPremium + marriedSet + deptSet + ageSet) == 5 ? 1 : 0;
+                if (debugCompleteProfile)
+                    trueFalse = 1;
+                return trueFalse == resultToMatch;
             default:
                 return false; 
         }
