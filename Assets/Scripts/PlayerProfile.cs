@@ -59,8 +59,10 @@ public class PlayerProfile : MonoBehaviour
 
     public bool checkProfileValue(playerInfoType typeToCheck, int resultToMatch)
     {
-        switch(typeToCheck)
+        switch (typeToCheck)
         {
+            case playerInfoType.id:
+                return (id == resultToMatch);
             case playerInfoType.male:
                 return (male == resultToMatch);
             case playerInfoType.female:
@@ -76,6 +78,25 @@ public class PlayerProfile : MonoBehaviour
 
     public void setProfileValue(playerInfoType typeToSet, int value)
     {
-
+        switch (typeToSet)
+        {
+            case playerInfoType.id:
+                id = value;
+                break;
+            case playerInfoType.male:
+                male = value;
+                break;
+            case playerInfoType.female:
+                female = value;
+                break;
+            case playerInfoType.single:
+                single = value;
+                break;
+            case playerInfoType.married:
+                married = value;
+                break;
+            default:
+                break;
+        }
     }
 }
