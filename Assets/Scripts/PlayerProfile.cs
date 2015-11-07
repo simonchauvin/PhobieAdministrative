@@ -18,9 +18,10 @@ public class PlayerProfile : MonoBehaviour
     }
 
 
-    public int id { get; set; }
-    public int premiumId { get; set; }
-    public int procedureId { get; set; }
+    public int id = 0;
+    public int premiumId = 0;
+    public int procedureId = 0;
+    public int isPremium { get; set; }
     public int male { get; set; }
     public int female { get; set; }
     public int single { get; set; }
@@ -32,7 +33,11 @@ public class PlayerProfile : MonoBehaviour
 	
     public enum playerInfoType
     {
+        none,
         id, 
+        premiumId,
+        isPremium,
+        procedureId,
         male,
         female,
         single,
@@ -46,9 +51,7 @@ public class PlayerProfile : MonoBehaviour
 
 	void Start ()
     {
-        id = Random.Range(100000000, 999999999);
-        premiumId = Random.Range(00000000, 99999999);
-        procedureId = Random.Range(100000000, 999999999);
+        
 	}
 	
 	
@@ -59,8 +62,10 @@ public class PlayerProfile : MonoBehaviour
 
     public bool checkProfileValue(playerInfoType typeToCheck, int resultToMatch)
     {
-        switch(typeToCheck)
+        switch (typeToCheck)
         {
+            case playerInfoType.id:
+                return (id == resultToMatch);
             case playerInfoType.male:
                 return (male == resultToMatch);
             case playerInfoType.female:
@@ -76,6 +81,25 @@ public class PlayerProfile : MonoBehaviour
 
     public void setProfileValue(playerInfoType typeToSet, int value)
     {
-
+        switch (typeToSet)
+        {
+            case playerInfoType.id:
+                id = value;
+                break;
+            case playerInfoType.male:
+                male = value;
+                break;
+            case playerInfoType.female:
+                female = value;
+                break;
+            case playerInfoType.single:
+                single = value;
+                break;
+            case playerInfoType.married:
+                married = value;
+                break;
+            default:
+                break;
+        }
     }
 }
