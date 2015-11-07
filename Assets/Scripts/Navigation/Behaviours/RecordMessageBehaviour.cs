@@ -86,7 +86,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
     IEnumerator sendMessage()
     {
         string name = "message_" + cacheHackNumberToRecord;
-        byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "\\" + name + ".wav");
+        byte[] bytes = File.ReadAllBytes(Application.persistentDataPath + "/" + name + ".wav");
         WWWForm form = new WWWForm();
         form.AddBinaryData("message", bytes, name + ".wav", "application/octet-stream");
 
