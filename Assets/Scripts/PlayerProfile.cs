@@ -13,6 +13,19 @@ public class PlayerProfile : MonoBehaviour
     public int height { get; set; }
     public int weight { get; set; }
 	
+    public enum playerInfoType
+    {
+        id, 
+        male,
+        female,
+        single,
+        married,
+        dept,
+        age,
+        height,
+        weight
+    }
+
 
 	void Start ()
     {
