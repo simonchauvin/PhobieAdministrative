@@ -39,7 +39,7 @@ public class NumericEntry : NavigationBehaviour
             {
                 navigateToTarget();
             }
-            else
+            else if(timer >= timeToEntry)
             {
                 parentNavigationState.deactivate();
                 alternateTarget.activate();

@@ -8,7 +8,6 @@ public class MultipleInputBehaviour : NavigationBehaviour
 
     private List<char> charactersEntered;
 
-
     public override void Start()
     {
         base.Start();
