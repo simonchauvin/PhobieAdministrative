@@ -27,6 +27,8 @@ public class PlayerProfile : MonoBehaviour
     public int ageSet { get; set; }
     public int profileSet { get; set; }
     public int cbSet { get; set; }
+    public int resetProfile { get; set; }
+
 
     public enum playerInfoType
     {
@@ -40,6 +42,7 @@ public class PlayerProfile : MonoBehaviour
         ageSet,
         profileSet,
         cbSet,
+        resetProfile
     }
 
 
@@ -73,7 +76,7 @@ public class PlayerProfile : MonoBehaviour
             case playerInfoType.profileSet:
                 return (cbSet + isPremium + marriedSet + deptSet + ageSet) == 1;
             default:
-                return false;
+                return false; 
         }
     }
 
@@ -98,6 +101,9 @@ public class PlayerProfile : MonoBehaviour
                 break;
             case playerInfoType.isPremium:
                 isPremium = value;
+                break;
+            case playerInfoType.resetProfile:
+                //reset();
                 break;
             default:
                 break;
