@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[ExecuteInEditMode]
 public class NavigationState : MonoBehaviour
 {
     /// <summary>
@@ -47,6 +48,11 @@ public class NavigationState : MonoBehaviour
     public Color color;
 
     /// <summary>
+    /// 
+    /// </summary>
+    public float duration {get; set;}
+
+    /// <summary>
     /// Init.
     /// </summary>
     void Awake()
@@ -60,6 +66,13 @@ public class NavigationState : MonoBehaviour
 
         //Color
         GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.green);
+
+        //
+        duration = 0f;
+        foreach(DelayedAudio delayedAudio in audioClips)
+        {
+            duration += delayedAudio.delay + delayedAudio.audioClip.length;
+        }
     }
 
 
