@@ -27,6 +27,11 @@ public class NavigationState : MonoBehaviour
     public bool loopBg = true;
 
     /// <summary>
+    /// Volume of the bg sound.
+    /// </summary>
+    public float volume = 1f;
+
+    /// <summary>
     /// 
     /// </summary>
     [SerializeField]
@@ -88,6 +93,7 @@ public class NavigationState : MonoBehaviour
 
         //Play Audio
         NavigationManager.instance.audioBgSrc.clip = AudioBackground.instance.retrieveAudioClip(audioBgType);
+        NavigationManager.instance.audioBgSrc.volume = volume;
         NavigationManager.instance.audioBgSrc.loop = loopBg;
         NavigationManager.instance.audioBgSrc.Play();
 
@@ -164,6 +170,7 @@ public class NavigationState : MonoBehaviour
         //Launch audio again
         //Play Audio
         NavigationManager.instance.audioBgSrc.clip = AudioBackground.instance.retrieveAudioClip(audioBgType);
+        NavigationManager.instance.audioBgSrc.volume = volume;
         NavigationManager.instance.audioBgSrc.loop = loopBg;
         NavigationManager.instance.audioBgSrc.Play();
 
