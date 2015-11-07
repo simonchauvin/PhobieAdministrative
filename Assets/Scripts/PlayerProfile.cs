@@ -51,6 +51,16 @@ public class PlayerProfile : MonoBehaviour
         
 	}
 	
+    private void reset ()
+    {
+        isPremium = 0;
+        marriedSet = 0;
+        deptSet = 0;
+        ageSet = 0;
+        profileSet = 0;
+        cbSet = 0;
+        resetProfile = 0;
+    }
 	
 	void Update ()
     {
@@ -103,7 +113,7 @@ public class PlayerProfile : MonoBehaviour
                 isPremium = value;
                 break;
             case playerInfoType.resetProfile:
-                //reset();
+                reset();
                 break;
             default:
                 break;
