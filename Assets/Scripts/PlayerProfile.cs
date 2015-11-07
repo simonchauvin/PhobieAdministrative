@@ -3,6 +3,21 @@ using System.Collections;
 
 public class PlayerProfile : MonoBehaviour
 {
+
+    private static PlayerProfile _instance;
+    public static PlayerProfile instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.Find("Player").GetComponent<PlayerProfile>();
+            }
+            return _instance;
+        }
+    }
+
+
     public int id { get; set; }
     public bool male { get; set; }
     public bool female { get; set; }
@@ -37,4 +52,27 @@ public class PlayerProfile : MonoBehaviour
     {
 	    
 	}
+
+    public bool checkMatch(playerInfoType typeToMatch)
+    {
+        switch(typeToMatch)
+        {
+            case playerInfoType.male:
+                return male;
+                break;
+            case playerInfoType.female:
+                return female;
+                break;
+            case playerInfoType.single:
+                return single;
+                break;
+            case playerInfoType.married:
+                return married;
+                break;
+            default:
+                return false;
+                break;
+
+        }
+    }
 }
