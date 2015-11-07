@@ -74,7 +74,7 @@ public class NumericEntry : NavigationBehaviour
         if (charactersEntered.Count == numberCount)
         {
             correctEntry = true;
-            for (int i = 0; i < numberCount; i++)
+            for (int i = 0; i < numberCount - 1; i++)
             {
                 int j = 0;
                 if (!int.TryParse(charactersEntered[i].ToString(), out j))

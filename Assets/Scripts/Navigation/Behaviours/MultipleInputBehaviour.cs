@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MultipleInputBehaviour : NavigationBehaviour
 {
+    public PlayerProfile.playerInfoType playerInfoType;
+
     public string charactersToEnter;
 
     private List<char> charactersEntered;
@@ -20,7 +22,8 @@ public class MultipleInputBehaviour : NavigationBehaviour
     {
         base.Update();
 
-        
+        //if (playerInfoType != PlayerProfile.playerInfoType.none)
+        //    charactersToEnter == 
     }
 
     public override void activate()
