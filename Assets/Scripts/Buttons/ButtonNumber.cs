@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ButtonNumber : MonoBehaviour 
 {
-	private ButtonCall buttonCall;
+	private KeyAudioManager keyAudioManager;
 	private ButtonNumberSFX buttonNumberSFX;
 	private TextScreen textScreen;
 	private GameObject childText;
@@ -18,7 +18,7 @@ public class ButtonNumber : MonoBehaviour
 		childText = transform.GetChild (0).gameObject;
 		currentNumber = childText.GetComponent<Text>().text;
 		buttonNumberSFX = FindObjectOfType<ButtonNumberSFX>();
-		buttonCall = FindObjectOfType<ButtonCall>();
+		keyAudioManager = FindObjectOfType<KeyAudioManager>();
 	}
 
 	public void TapButton ()
@@ -35,51 +35,51 @@ public class ButtonNumber : MonoBehaviour
 		switch (currentNumber)
 		{
 			case "1" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[0]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[0]);
 				break;
 
 			case "2" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[1]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[1]);
 				break;
 
 			case "3" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[2]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[2]);
 				break;
 
 			case "4" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[3]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[3]);
 				break;
 
 			case "5" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[4]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[4]);
 				break;
 
 			case "6" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[5]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[5]);
 				break;
 
 			case "7" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[6]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[6]);
 				break;
 
 			case "8" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[7]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[7]);
 				break;
 
 			case "9" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[8]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[8]);
 				break;
 
 			case "0" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[9]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[9]);
 				break;
 
 			case "*" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[10]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[10]);
 				break;
 
 			case "#" :
-				buttonCall.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[11]);
+				keyAudioManager.audioSource.PlayOneShot (buttonNumberSFX.audioClipsList[11]);
 				break;
 		}
 	}

@@ -4,16 +4,17 @@ using System.Collections;
 public class ButtonQuit : MonoBehaviour 
 {
 	public AudioClip buttonQuitSFX;
-	private ButtonCall buttonCall;
 
+	private KeyAudioManager keyAudioManager;
+	
 	void Start ()
 	{
-		buttonCall = FindObjectOfType<ButtonCall>();
+		keyAudioManager = FindObjectOfType<KeyAudioManager>();
 	}
 
 	public void ExitGame ()
 	{
-		buttonCall.audioSource.PlayOneShot (buttonQuitSFX);
+		keyAudioManager.audioSource.PlayOneShot (buttonQuitSFX);
 		Application.Quit ();
 	}
 }

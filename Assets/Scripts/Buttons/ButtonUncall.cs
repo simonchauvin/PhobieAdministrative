@@ -5,21 +5,19 @@ public class ButtonUncall : MonoBehaviour
 {
 	public AudioClip buttonUncallSFX;
 
-	private ButtonCallManager buttonCallManager;
-	private ButtonCall buttonCall;
-
+	private InterfaceManager interfaceManager;
+	private KeyAudioManager keyAudioManager;
+	
 	void Start ()
 	{
-		buttonCall = FindObjectOfType<ButtonCall>();
-		buttonCallManager = FindObjectOfType<ButtonCallManager>();
+		keyAudioManager = FindObjectOfType<KeyAudioManager>();
+		interfaceManager = FindObjectOfType<InterfaceManager>();
 	}
 
 	public void Uncall ()
 	{
-		buttonCall.audioSource.Stop ();
-		buttonCall.audioSource.PlayOneShot (buttonUncallSFX);
-
-		buttonCallManager.isPlayerInACall = false;
-		buttonCallManager.SetCallButtons ();
+		keyAudioManager.audioSource.Stop ();
+		keyAudioManager.audioSource.PlayOneShot (buttonUncallSFX);
+		interfaceManager.GoToNormalInterface ();
 	}
 }

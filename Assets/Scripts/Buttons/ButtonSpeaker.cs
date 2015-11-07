@@ -6,32 +6,40 @@ public class ButtonSpeaker : MonoBehaviour
 {
 	public AudioClip buttonHPOn;
 	public AudioClip buttonHPOff;
-
-	public Color colorSpeakerOn;
-	public Color colorSpeakerOff;
-
 	public Sprite spriteSpeakerOn;
 	public Sprite spriteSpeakerOff;
 
+	public bool isOnSpeaker;
+
 	private GameObject buttonChild;
-	private ButtonCall buttonCall;
-	private Text childText;
+	private KeyAudioManager keyAudioManager;
 	private Image thisImage;
-	private bool isOnSpeaker;
 
 	void Start () 
 	{
-		//buttonChild = transform.GetChild (0).gameObject;
-		//childText = buttonChild.GetComponent<Text>();
-		buttonCall = FindObjectOfType<ButtonCall>();
+		keyAudioManager = FindObjectOfType<KeyAudioManager>();
 		thisImage = GetComponent<Image>();
-		DesactiveSpeaker ();
+
+		if (isOnSpeaker)
+		{
+			keyAudioManager.SpeakerOn ();
+			thisImage.sprite = spriteSpeakerOn;
+		}
+		else
+		{
+			keyAudioManager.SpeakerOff ();
+			thisImage.sprite = spriteSpeakerOff;
+		}
 	}
 
 	public void ToggleSpeaker () 
 	{
 		isOnSpeaker = !isOnSpeaker;
+		CheckSpeaker ();
+	}
 
+	private void CheckSpeaker ()
+	{
 		if (isOnSpeaker)
 			ActiveSpeaker ();
 		else
@@ -40,25 +48,15 @@ public class ButtonSpeaker : MonoBehaviour
 
 	private void ActiveSpeaker ()
 	{
-		buttonCall.currentVolumeSpeaker = buttonCall.volumeWithSpeaker;
-		//childText.color = colorSpeakerOn;
-		RefreshVolume ();
-		buttonCall.audioSource.PlayOneShot (buttonHPOn);
+		keyAudioManager.SpeakerOn ();
+		keyAudioManager.audioSource.PlayOneShot (buttonHPOn);
 		thisImage.sprite = spriteSpeakerOn;
-
 	}
 
 	private void DesactiveSpeaker ()
 	{
-		buttonCall.currentVolumeSpeaker = buttonCall.volumeWithoutSpeaker;
-		//childText.color = colorSpeakerOff;
-		RefreshVolume ();
-		buttonCall.audioSource.PlayOneShot (buttonHPOff);
+		keyAudioManager.SpeakerOff ();
+		keyAudioManager.audioSource.PlayOneShot (buttonHPOff);
 		thisImage.sprite = spriteSpeakerOff;
-	}
-
-	private void RefreshVolume ()
-	{
-		buttonCall.audioSource.volume = buttonCall.currentVolumeSpeaker;
 	}
 }
