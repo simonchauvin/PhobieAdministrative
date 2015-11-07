@@ -4,6 +4,8 @@ using System.Collections;
 
 public class InterfaceManager : MonoBehaviour 
 {
+	public AvailableInterfacesEnum possibeInterfaces;
+
 	public GameObject dringInterface;
 	public GameObject keyboardInterface;
 
@@ -13,10 +15,8 @@ public class InterfaceManager : MonoBehaviour
 	public GameObject buttonCall;
 	public GameObject buttonUncall;
 
-	public AvailableInterfacesEnum possibeInterfaces;
-
-	public bool isPlayerInACall;
-	public bool isPlayerGiveTheCall;
+	public AudioClip buttonAcceptSFX;
+	public AudioClip buttonDeclineSFX;
 
 	private ReceiveCallManager receiveCallManager;
 	private KeyAudioManager keyAudioManager;
@@ -72,10 +72,14 @@ public class InterfaceManager : MonoBehaviour
 	public void AcceptCall ()
 	{
 		GoToReceiveCallInterface ();
+		keyAudioManager.audioSource.PlayOneShot (buttonAcceptSFX);
+		keyAudioManager.CancelDring ();
 	}
 
 	public void DeclineCall ()
 	{
 		GoToNormalInterface ();
+		keyAudioManager.audioSource.PlayOneShot (buttonDeclineSFX);
+		keyAudioManager.CancelDring ();
 	}
 }

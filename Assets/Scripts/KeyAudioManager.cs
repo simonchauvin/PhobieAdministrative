@@ -10,10 +10,12 @@ public class KeyAudioManager : MonoBehaviour
 	public float volumeWithSpeaker;
 	public float volumeWithoutSpeaker;
 
+	public float timeBeforeAnotherRing;
+	public int numberOfWaitingRings;
+
 	private InterfaceManager interfaceManager;
 	private float currentVolumeSpeaker;
 
-	
 	void Start ()
 	{
 		interfaceManager = FindObjectOfType<InterfaceManager>();
@@ -50,6 +52,24 @@ public class KeyAudioManager : MonoBehaviour
 #endif
 		audioSource.clip = ringSFX;
 		audioSource.Play ();
+		print ("ring");
+
+		if (numberOfWaitingRings > 0)
+		{
+			print ("ring again");
+			numberOfWaitingRings --;
+			Invoke ("SetDring", timeBeforeAnotherRing);
+		}
+		else
+		{
+			print ("raccroche");
+			interfaceManager.GoToNormalInterface ();
+		}
+	}
+
+	public void CancelDring ()
+	{
+		CancelInvoke ("SetDring");
 	}
 	
 	private void StopLastSound ()
