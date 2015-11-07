@@ -22,7 +22,7 @@ public class NavigationBehaviour : MonoBehaviour {
     /// <summary>
     /// 
     /// </summary>
-    public GameObject arrowPrefab;
+    private GameObject arrowOriginal;
     private GameObject arrow;
 
 	/// <summary>
@@ -48,7 +48,8 @@ public class NavigationBehaviour : MonoBehaviour {
 		if(targetNavigationState == null)
 			Debug.LogError("A navigation state target must be specified.");
 
-        arrow = Instantiate(arrowPrefab, transform.position, transform.rotation) as GameObject;
+        arrowOriginal = GameObject.Find("BaseArrow");
+        arrow = Instantiate(arrowOriginal, transform.position, transform.rotation) as GameObject;
         arrow.name = "arrow_" + name;
         arrow.transform.parent = GameObject.Find("GUIArrows").transform;
     }
@@ -56,15 +57,21 @@ public class NavigationBehaviour : MonoBehaviour {
 
     public virtual void Update()
     {
+        if (targetNavigationState == null)
+            return;
+
         //ARROW AND LINE
         Vector3 targetPos = targetNavigationState.transform.position;
         Vector3 dir = targetPos - transform.position;
         Vector3 halfPosition = transform.position + dir * 0.5f;
 
+        Debug.DrawLine(transform.position, targetPos, lineColor);
+
         //Check
         if (arrow == null)
         {
-            arrow = Instantiate(arrowPrefab, halfPosition, transform.rotation) as GameObject;
+            arrowOriginal = GameObject.Find("BaseArrow");
+            arrow = Instantiate(arrowOriginal, halfPosition, transform.rotation) as GameObject;
             arrow.name = "arrow_" + name;
             arrow.transform.parent = GameObject.Find("GUIArrows").transform;
         }
@@ -75,11 +82,6 @@ public class NavigationBehaviour : MonoBehaviour {
         arrow.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir);
         arrow.GetComponent<SpriteRenderer>().color = lineColor;
 
-        Debug.DrawLine(transform.position, targetPos, lineColor);
-
-        //TEXTS
-        //Vector3 offsettedPosition = transform.position + dir * NavigationManager.instance.labelOffset;
-        //
     }
 
 

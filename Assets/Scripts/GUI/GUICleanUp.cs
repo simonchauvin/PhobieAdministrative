@@ -8,7 +8,7 @@ public class GUICleanUp : MonoBehaviour {
 	public void CleanUp () {
 	    foreach(Transform child in transform)
         {
-            DestroyImmediate(child);
+            DestroyImmediate(child.gameObject);
         }
 	}
 }
