@@ -43,7 +43,7 @@ public class NumericEntry : NavigationBehaviour
             {
                 parentNavigationState.deactivate();
                 alternateTarget.activate();
-                NavigationManager.instance.switchState(targetNavigationState);
+                NavigationManager.instance.switchState(alternateTarget);
             }
         }
 
