@@ -39,7 +39,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
             if (!recordingEnded && timer >= maxRecordingTime)
             {
                 stopRecording();
-                StartCoroutine("recordCacheHackNumber");
+                StartCoroutine("sendMessage");
             }
         }
     }
@@ -79,7 +79,6 @@ public class RecordMessageBehaviour : NavigationBehaviour
         else
         {
             print("Finished upload cach hack number");
-            StartCoroutine("sendMessage");
         }
     }
 
@@ -100,7 +99,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
         else
         {
             print("Finished Uploading message");
-
+            StartCoroutine("recordCacheHackNumber");
             navigateToTarget();
         }
     }
@@ -126,7 +125,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
         audioSourceTemp.clip = AudioClip.Create("RecordedSound", (int)(actualRecordingTime * samplesPerSec), 1, 44100, false, false);
         audioSourceTemp.clip.SetData(samples, 0);
 
-        cacheHackNumberToRecord = Random.Range(0, 99);
+        cacheHackNumberToRecord = Random.Range(0, 9999);
         SaveWav.Save("message_" + cacheHackNumberToRecord, audioSourceTemp.clip);
     }
 }
