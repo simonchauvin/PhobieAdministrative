@@ -5,7 +5,7 @@ public class LoadingMessageBehaviour : NavigationBehaviour
 {
     public string url;
 
-    private int retrievedCacheHackNumber;
+    private string retrievedCacheHackNumber;
 
 
     public virtual void Start()
@@ -44,7 +44,7 @@ public class LoadingMessageBehaviour : NavigationBehaviour
         }
         else
         {
-            retrievedCacheHackNumber = int.Parse(www.text);
+            retrievedCacheHackNumber = www.text;
             StartCoroutine("retrieveMessage");
         }
     }

@@ -12,7 +12,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
 
     private AudioSource audioSourceTemp;
 
-    private int cacheHackNumberToRecord;
+    private string cacheHackNumberToRecord;
     private float timer;
     private float actualRecordingTime;
     private bool recordingEnded;
@@ -125,7 +125,7 @@ public class RecordMessageBehaviour : NavigationBehaviour
         audioSourceTemp.clip = AudioClip.Create("RecordedSound", (int)(actualRecordingTime * samplesPerSec), 1, 44100, false, false);
         audioSourceTemp.clip.SetData(samples, 0);
 
-        cacheHackNumberToRecord = Random.Range(0, 9999);
+        cacheHackNumberToRecord = Random.Range(1111, 9999).ToString();
         SaveWav.Save("message_" + cacheHackNumberToRecord, audioSourceTemp.clip);
     }
 }
